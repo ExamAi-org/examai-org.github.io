@@ -1,8 +1,19 @@
 {
   "name": "Exam Tracker",
-  "logo": "logos/exam_tracker.png",
-  "downloadUrl": "https://github.com/your-username/exam-tracker/releases/latest",
+  "logo": "logos/Examtracker-final.svg",
+  "downloads": [
+    {
+      "name": "Google Drive",
+      "url": "https://drive.google.com/file/d/YOUR_ID/view"
+    },
+    {
+      "name": "Google Play Store",
+      "url": "https://play.google.com/store/apps/details?id=com.examai.examtracker"
+    }
+  ],
   "downloadLabel": "Download APK",
+  "webAppUrl": "",
+  "webAppLabel": "Open Web App",
   "screenshots": [
     "screenshots/exam-tracker-1.png",
     "screenshots/exam-tracker-2.png",
@@ -26,7 +37,7 @@
     "Native Android-only application (minSdk 24, targetSdk 35); no iOS or desktop web version",
     "Live notification auto-parsing requires the user to manually grant Android Notification Listener permission"
   ],
-  "repoUrl": "https://github.com/your-username/exam-tracker",
+  "repoUrl": "https://github.com/ExamAi-org/exam-tracker",
   "derivatives": [],
   "legalObligations": "Released under an open-source license. Anyone modifying, building, or redistributing this software must retain original copyright, attribution, and license notices, and comply with third-party library licenses (AndroidX, Jetpack Compose, OkHttp, Jsoup, Coil, and Google Play Services).",
   "privacyPolicy": "Exam Tracker follows a local-first privacy architecture: no ads, analytics, tracking SDKs, or central data collection servers are used, and no personal data is sold or harvested. All job applications, User IDs, passwords, roll numbers, attached documents, and user-configured AI API keys are stored locally on the user's device. Optional AI scanning transmits only the document or notice text chosen by the user directly to their configured AI provider, and optional Google Drive backup stores files exclusively inside the user's own Google Drive under the scoped drive.file permission."
