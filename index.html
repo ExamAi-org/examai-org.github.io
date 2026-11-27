@@ -80,7 +80,7 @@
 </head>
 <body class="min-h-screen antialiased flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
 
-  <!-- Top Navbar: ExamAi on Left, Day/Night Button Aligned Right -->
+  <!-- Top Navbar -->
   <header class="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800/80 backdrop-blur bg-white/85 dark:bg-[#070B19]/85">
     <div class="max-w-6xl mx-auto px-3.5 sm:px-5 py-3 flex items-center justify-between gap-3">
       <div class="flex items-center gap-4 min-w-0">
@@ -98,7 +98,6 @@
         </nav>
       </div>
 
-      <!-- Day / Night Button Aligned Right with ExamAi -->
       <button id="theme-toggle" type="button" aria-label="Toggle Day/Night Mode"
               class="px-2.5 py-1.5 rounded-md border border-slate-300 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-400 transition inline-flex items-center gap-1.5 text-xs font-medium shrink-0">
         <span id="theme-icon">☀️</span>
@@ -107,12 +106,11 @@
     </div>
   </header>
 
-  <!-- Main Content with Reduced Outer Negative Space -->
+  <!-- Main Content -->
   <main id="top" class="max-w-6xl w-full mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-8 flex-grow">
 
-    <!-- Main Storefront / Directory View -->
+    <!-- Main Storefront View -->
     <div id="storefront-view" class="space-y-8">
-      <!-- Hero -->
       <section class="text-center max-w-2xl mx-auto space-y-2">
         <p class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
           Open Source &bull; Community-Driven &bull; AI Powered
@@ -125,20 +123,17 @@
         </p>
       </section>
 
-      <!-- Apps Folder Grid -->
       <section id="apps-section" class="space-y-3">
         <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
           <h2 class="text-base sm:text-lg font-semibold">Application Folders</h2>
           <span id="app-count" class="text-xs text-slate-500 dark:text-slate-400">Loading...</span>
         </div>
 
-        <div id="folder-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
-          <!-- Auto-loaded from /apps/*.json -->
-        </div>
+        <div id="folder-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1"></div>
       </section>
     </div>
 
-    <!-- Dedicated App Installer / Store Page View -->
+    <!-- Dedicated App Store / Installer View -->
     <section id="dedicated-app-view" class="hidden space-y-4">
       <div class="flex items-center justify-between gap-3">
         <button id="back-to-store-btn" type="button"
@@ -150,24 +145,34 @@
       </div>
 
       <div class="surface-card rounded-2xl p-4 sm:p-6 space-y-5">
-        <!-- App Header: Logo + Download Button right beside Logo -->
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
-          <div class="flex items-center gap-3 min-w-0">
+        <!-- App Header: Logo on Left, Name + 1-Line Tagline beside Logo, Download Button below them -->
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 space-y-3">
+          <div class="flex items-center gap-3.5 min-w-0">
             <div id="detail-logo-wrap"
                  class="w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0"></div>
 
-            <a id="detail-download-btn" href="#" target="_blank" rel="noopener noreferrer"
-               class="hidden accent-pill text-slate-950 font-semibold text-xs px-3.5 py-1.5 rounded-md hover:opacity-90 transition shrink-0">
-              Download
-            </a>
-
-            <div class="min-w-0">
+            <div class="min-w-0 flex-1">
               <div class="flex flex-wrap items-center gap-2">
-                <h2 id="detail-name" class="text-xl sm:text-2xl font-bold safe-text"></h2>
+                <h2 id="detail-name" class="text-lg sm:text-2xl font-bold truncate"></h2>
                 <span id="detail-rating-badge"
-                      class="hidden text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-300 border border-amber-500/30"></span>
+                      class="hidden text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-300 border border-amber-500/30 shrink-0"></span>
               </div>
-              <p id="detail-tagline" class="text-xs sm:text-sm text-cyan-600 dark:text-cyan-400 safe-text mt-0.5"></p>
+              <!-- Strictly 1 Line Short Description -->
+              <p id="detail-tagline" class="text-xs sm:text-sm text-cyan-600 dark:text-cyan-400 truncate mt-0.5"></p>
+            </div>
+          </div>
+
+          <!-- Download Button & Multi-Source Dropdown right below -->
+          <div id="download-control-wrap" class="hidden relative inline-block">
+            <button id="detail-download-btn" type="button"
+                    class="accent-pill text-slate-950 font-semibold text-xs px-3.5 py-1.5 rounded-md hover:opacity-90 transition inline-flex items-center gap-1.5">
+              <span id="detail-download-label">Download</span>
+              <span id="detail-download-caret" class="hidden text-[10px]">▼</span>
+            </button>
+
+            <!-- Dropdown Menu when multiple download URLs exist -->
+            <div id="detail-download-dropdown"
+                 class="hidden absolute left-0 mt-1.5 w-60 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-lg py-1.5 z-20">
             </div>
           </div>
         </div>
@@ -252,7 +257,6 @@
     <!-- Bottom Section: General Comments & Direct In-Web Message -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-4 border-t border-slate-200 dark:border-slate-800">
 
-      <!-- Main Screen General Comments (No Rating) -->
       <div id="community-section" class="surface-card rounded-2xl p-4 sm:p-6 space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-base sm:text-lg font-semibold">Community Comments</h2>
@@ -266,7 +270,6 @@
         </div>
       </div>
 
-      <!-- In-Web Message to Developer -->
       <div id="message-developer" class="surface-card rounded-2xl p-4 sm:p-6 space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-base sm:text-lg font-semibold">Message Developer</h2>
@@ -310,7 +313,7 @@
 
   </main>
 
-  <!-- Footer with Page List instead of Copyright -->
+  <!-- Footer with Page List -->
   <footer class="border-t border-slate-200 dark:border-slate-800/80 py-4 px-3 sm:px-4 text-xs text-slate-600 dark:text-slate-400">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
       <div>
@@ -411,6 +414,57 @@
       containerEl.appendChild(img);
     }
 
+    /* Storefront Source Icon Helper (Google Drive, Firebase, Play Store, GitHub, Custom Logo) */
+    function getSourceBadgeHtml(source) {
+      const name = (source.name || source.label || "Download").trim();
+      const lower = name.toLowerCase();
+      const urlLower = (source.url || "").toLowerCase();
+
+      if (source.icon) {
+        return `<img src="${escapeAttr(source.icon)}" alt="${escapeAttr(name)}" class="w-4 h-4 rounded object-cover shrink-0" />`;
+      }
+      if (lower.includes("drive") || urlLower.includes("drive.google.com")) {
+        return `<span class="w-4 h-4 rounded bg-emerald-500/15 text-emerald-500 inline-flex items-center justify-center text-[10px] font-bold shrink-0">D</span>`;
+      }
+      if (lower.includes("firebase") || urlLower.includes("firebase")) {
+        return `<span class="w-4 h-4 rounded bg-amber-500/15 text-amber-500 inline-flex items-center justify-center text-[10px] font-bold shrink-0">F</span>`;
+      }
+      if (lower.includes("play") || urlLower.includes("play.google.com")) {
+        return `<span class="w-4 h-4 rounded bg-sky-500/15 text-sky-500 inline-flex items-center justify-center text-[10px] font-bold shrink-0">▶</span>`;
+      }
+      if (lower.includes("github") || urlLower.includes("github.com")) {
+        return `<span class="w-4 h-4 rounded bg-purple-500/15 text-purple-400 inline-flex items-center justify-center text-[10px] font-bold shrink-0">G</span>`;
+      }
+      const initial = name.charAt(0).toUpperCase() || "↓";
+      return `<span class="w-4 h-4 rounded bg-cyan-500/15 text-cyan-500 inline-flex items-center justify-center text-[10px] font-bold shrink-0">${escapeHtml(initial)}</span>`;
+    }
+
+    /* Normalize 1 or Multiple Download Sources from JSON */
+    function normalizeDownloadSources(app) {
+      const list = [];
+      if (Array.isArray(app.downloads)) {
+        app.downloads.forEach((item) => {
+          if (typeof item === "string" && item.trim()) {
+            list.push({ name: "Download", url: item.trim() });
+          } else if (item && typeof item === "object" && item.url && item.url.trim()) {
+            list.push({
+              name: (item.name || item.store || item.label || "Download").trim(),
+              url: item.url.trim(),
+              icon: item.icon || ""
+            });
+          }
+        });
+      }
+      if (list.length === 0 && typeof app.downloadUrl === "string" && app.downloadUrl.trim()) {
+        list.push({
+          name: (app.downloadLabel || "Download").trim(),
+          url: app.downloadUrl.trim(),
+          icon: ""
+        });
+      }
+      return list;
+    }
+
     /* Fast Parallel Loading from /apps/*.json */
     const gridEl = document.getElementById("folder-grid");
     const countEl = document.getElementById("app-count");
@@ -485,7 +539,7 @@
                 </span>
                 ${ratingBadge}
               </div>
-              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-0.5 safe-text">
+              <p class="text-xs text-slate-600 dark:text-slate-400 truncate mt-0.5">
                 ${escapeHtml(app.tagline || "")}
               </p>
             </div>
@@ -522,6 +576,58 @@
       footerPageList.appendChild(fragment);
     }
 
+    /* Download Button & Dropdown Setup */
+    const downloadWrap = document.getElementById("download-control-wrap");
+    const downloadBtn = document.getElementById("detail-download-btn");
+    const downloadLabel = document.getElementById("detail-download-label");
+    const downloadCaret = document.getElementById("detail-download-caret");
+    const downloadDropdown = document.getElementById("detail-download-dropdown");
+
+    let activeDownloadSources = [];
+
+    function setupDownloadControl(app) {
+      activeDownloadSources = normalizeDownloadSources(app);
+      downloadDropdown.classList.add("hidden");
+      downloadDropdown.innerHTML = "";
+
+      if (activeDownloadSources.length === 0) {
+        downloadWrap.classList.add("hidden");
+        return;
+      }
+
+      downloadWrap.classList.remove("hidden");
+
+      if (activeDownloadSources.length === 1) {
+        downloadLabel.textContent = activeDownloadSources[0].name || "Download";
+        downloadCaret.classList.add("hidden");
+      } else {
+        downloadLabel.textContent = app.downloadLabel || "Download";
+        downloadCaret.classList.remove("hidden");
+        downloadDropdown.innerHTML = activeDownloadSources
+          .map((src) => `
+            <a href="${escapeAttr(src.url)}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+              ${getSourceBadgeHtml(src)}
+              <span class="truncate font-medium">${escapeHtml(src.name)}</span>
+            </a>
+          `)
+          .join("");
+      }
+    }
+
+    downloadBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (activeDownloadSources.length === 1) {
+        window.open(activeDownloadSources[0].url, "_blank", "noopener,noreferrer");
+      } else if (activeDownloadSources.length > 1) {
+        downloadDropdown.classList.toggle("hidden");
+      }
+    });
+
+    document.addEventListener("click", () => {
+      downloadDropdown.classList.add("hidden");
+    });
+
     function openDedicatedAppPage(app) {
       storefrontView.classList.add("hidden");
       dedicatedAppView.classList.remove("hidden");
@@ -538,15 +644,7 @@
       document.getElementById("detail-privacy").textContent = app.privacyPolicy || "No privacy policy specified.";
 
       renderAppLogo(document.getElementById("detail-logo-wrap"), app.logo, app.name, "w-14 h-14");
-
-      const downloadBtn = document.getElementById("detail-download-btn");
-      if (app.downloadUrl && app.downloadUrl.trim() !== "") {
-        downloadBtn.href = app.downloadUrl.trim();
-        downloadBtn.textContent = app.downloadLabel || "Download";
-        downloadBtn.classList.remove("hidden");
-      } else {
-        downloadBtn.classList.add("hidden");
-      }
+      setupDownloadControl(app);
 
       const ratingBadge = document.getElementById("detail-rating-badge");
       if (typeof app.averageRating === "number") {
