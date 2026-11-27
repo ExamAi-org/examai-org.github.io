@@ -163,7 +163,6 @@
 
           <!-- Action Bar: Download Button (Left) + Web App Button (Right) -->
           <div id="action-buttons-row" class="hidden flex flex-wrap items-center gap-2.5">
-            <!-- Download Button & Multi-Source Dropdown -->
             <div id="download-control-wrap" class="hidden relative inline-block">
               <button id="detail-download-btn" type="button"
                       class="accent-pill text-slate-950 font-semibold text-xs px-3.5 py-1.5 rounded-md hover:opacity-90 transition inline-flex items-center gap-1.5">
@@ -176,7 +175,6 @@
               </div>
             </div>
 
-            <!-- Web App Button right beside Download Button -->
             <a id="detail-webapp-btn" href="#" target="_blank" rel="noopener noreferrer"
                class="hidden px-3.5 py-1.5 rounded-md border border-cyan-500/50 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/10 font-semibold text-xs transition inline-flex items-center gap-1.5">
               <span id="detail-webapp-label">Open Web App</span>
@@ -242,13 +240,13 @@
           </div>
         </div>
 
-        <!-- Per-App Comments Slot -->
+        <!-- Per-App Comments & Reviews (GitHub Discussions via Giscus) -->
         <div class="rounded-xl p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <h3 class="text-sm font-semibold">App Comments &amp; Reviews</h3>
-            <span class="text-[11px] text-slate-500 dark:text-slate-400">One review per account &bull; Replies supported</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400">Powered by GitHub Discussions</span>
           </div>
-          <div id="app-comments-slot" class="text-xs text-slate-600 dark:text-slate-400 safe-text"></div>
+          <div id="app-giscus-slot" class="min-h-[120px] text-xs text-slate-600 dark:text-slate-400 safe-text"></div>
         </div>
 
         <!-- Source Code Link at the Bottom of Dedicated App Page -->
@@ -262,41 +260,43 @@
       </div>
     </section>
 
-    <!-- Bottom Section: General Comments & Direct In-Web Message -->
+    <!-- Bottom Section: GitHub Discussions Comments & GitHub Issues Direct Message -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-4 border-t border-slate-200 dark:border-slate-800">
 
+      <!-- General Community Comments (GitHub Discussions via Giscus) -->
       <div id="community-section" class="surface-card rounded-2xl p-4 sm:p-6 space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-base sm:text-lg font-semibold">Community Comments</h2>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400">General discussion</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400">GitHub Discussions</span>
         </div>
         <p class="text-xs text-slate-600 dark:text-slate-400 safe-text">
-          Leave a general comment or suggestion about ExamAi open-source initiatives.
+          Sign in with GitHub to leave a comment, ask questions, or reply to others.
         </p>
-        <div id="giscus-container" class="min-h-[140px] rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 p-3.5 text-xs text-slate-500 dark:text-slate-400 safe-text">
-          Comments widget slot. Enable GitHub Discussions on your repository and add your Giscus script tag here.
+        <div id="giscus-container" class="min-h-[140px] rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 p-3 text-xs text-slate-500 dark:text-slate-400 safe-text">
+          Loading GitHub Discussions...
         </div>
       </div>
 
+      <!-- Message Developer (Opens Pre-filled GitHub Issue) -->
       <div id="message-developer" class="surface-card rounded-2xl p-4 sm:p-6 space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-base sm:text-lg font-semibold">Message Developer</h2>
-          <span class="text-[11px] text-cyan-600 dark:text-cyan-400">Direct in-web message</span>
+          <span class="text-[11px] text-cyan-600 dark:text-cyan-400">GitHub Issues</span>
         </div>
         <p class="text-xs text-slate-600 dark:text-slate-400 safe-text">
-          Send a direct message without leaving this page.
+          Write your message, bug report, or feature request below and submit directly via GitHub Issues.
         </p>
 
-        <form id="dev-message-form" action="https://formspree.io/f/YOUR_FORM_ENDPOINT" method="POST" class="space-y-3">
+        <form id="dev-message-form" class="space-y-3">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label for="sender-name" class="block text-[11px] font-medium mb-1">Name</label>
+              <label for="sender-name" class="block text-[11px] font-medium mb-1">Your Name</label>
               <input id="sender-name" name="name" type="text" required placeholder="Your name"
                      class="w-full rounded-md bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs focus:outline-none focus:border-cyan-500" />
             </div>
             <div>
-              <label for="sender-contact" class="block text-[11px] font-medium mb-1">Email / Handle</label>
-              <input id="sender-contact" name="contact" type="text" required placeholder="you@example.com"
+              <label for="message-topic" class="block text-[11px] font-medium mb-1">Topic / App</label>
+              <input id="message-topic" name="topic" type="text" required placeholder="e.g. Exam Tracker / General"
                      class="w-full rounded-md bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs focus:outline-none focus:border-cyan-500" />
             </div>
           </div>
@@ -307,12 +307,16 @@
                       class="w-full rounded-md bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs focus:outline-none focus:border-cyan-500"></textarea>
           </div>
 
-          <div class="flex items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-3">
             <button type="submit"
-                    class="accent-pill text-slate-950 font-semibold text-xs px-3.5 py-1.5 rounded-md hover:opacity-90 transition">
-              Send Message
+                    class="accent-pill text-slate-950 font-semibold text-xs px-3.5 py-1.5 rounded-md hover:opacity-90 transition inline-flex items-center gap-1.5">
+              <span>Send via GitHub Issue</span>
+              <span>&#8599;</span>
             </button>
-            <span id="form-status" class="text-xs text-cyan-600 dark:text-cyan-400 hidden safe-text"></span>
+            <a href="https://github.com/ExamAi-org/examai-org.github.io/issues" target="_blank" rel="noopener noreferrer"
+               class="text-[11px] text-cyan-600 dark:text-cyan-400 hover:underline">
+              View All Issues &rarr;
+            </a>
           </div>
         </form>
       </div>
@@ -345,7 +349,9 @@
       githubOwner: "ExamAi-org",
       githubRepo: "examai-org.github.io",
       appsFolder: "apps",
-      phase2ApiUrl: null
+      giscusRepoId: "R_kgDOV8U1Mg",
+      giscusCategory: "General",
+      giscusCategoryId: "DIC_kwDOV8U1Ms4DMFRn"
     };
 
     /* Day / Night Toggle */
@@ -365,6 +371,38 @@
         themeLabel.textContent = "Day";
       }
       localStorage.setItem("examai_theme", mode);
+      syncGiscusTheme(mode === "light" ? "light" : "dark");
+    }
+
+    function syncGiscusTheme(giscusTheme) {
+      document.querySelectorAll("iframe.giscus-frame").forEach((iframe) => {
+        iframe.contentWindow?.postMessage(
+          { giscus: { setConfig: { theme: giscusTheme } } },
+          "https://giscus.app"
+        );
+      });
+    }
+
+    function mountGiscus(containerEl, discussionTerm) {
+      if (!containerEl) return;
+      containerEl.innerHTML = "";
+      const script = document.createElement("script");
+      script.src = "https://giscus.app/client.js";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.setAttribute("data-repo", `${CONFIG.githubOwner}/${CONFIG.githubRepo}`);
+      script.setAttribute("data-repo-id", CONFIG.giscusRepoId);
+      script.setAttribute("data-category", CONFIG.giscusCategory);
+      script.setAttribute("data-category-id", CONFIG.giscusCategoryId);
+      script.setAttribute("data-mapping", "specific");
+      script.setAttribute("data-term", discussionTerm);
+      script.setAttribute("data-strict", "0");
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-input-position", "bottom");
+      script.setAttribute("data-theme", htmlEl.classList.contains("dark") ? "dark" : "light");
+      script.setAttribute("data-lang", "en");
+      containerEl.appendChild(script);
     }
 
     applyTheme(localStorage.getItem("examai_theme") || "dark");
@@ -760,8 +798,11 @@
         derivEl.innerHTML = `<p class="text-xs text-slate-500 dark:text-slate-400">No approved derivative products listed yet.</p>`;
       }
 
-      document.getElementById("app-comments-slot").innerHTML =
-        `Reviews &amp; comments thread for <strong>${escapeHtml(app.name || "")}</strong>. (Phase 2 ready for 1-review-per-account &amp; nested replies).`;
+      /* Load per-app GitHub Discussion thread */
+      mountGiscus(
+        document.getElementById("app-giscus-slot"),
+        `App Reviews: ${app.name || app._slug || "App"}`
+      );
 
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -825,34 +866,24 @@
       return String(str).replace(/"/g, "&quot;");
     }
 
-    /* In-Web Message Form */
+    /* Message Developer via GitHub Issues */
     const msgForm = document.getElementById("dev-message-form");
-    const formStatus = document.getElementById("form-status");
-
-    msgForm.addEventListener("submit", async (e) => {
+    msgForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (msgForm.action.includes("YOUR_FORM_ENDPOINT")) {
-        formStatus.textContent = "Set your Formspree / Web3Forms endpoint in index.html to activate.";
-        formStatus.classList.remove("hidden");
-        return;
-      }
-      try {
-        const res = await fetch(msgForm.action, {
-          method: "POST",
-          body: new FormData(msgForm),
-          headers: { Accept: "application/json" }
-        });
-        if (res.ok) {
-          msgForm.reset();
-          formStatus.textContent = "Message sent!";
-        } else {
-          formStatus.textContent = "Failed to send message.";
-        }
-      } catch {
-        formStatus.textContent = "Network error.";
-      }
-      formStatus.classList.remove("hidden");
+      const senderName = document.getElementById("sender-name").value.trim();
+      const topic = document.getElementById("message-topic").value.trim();
+      const message = document.getElementById("sender-message").value.trim();
+
+      const title = encodeURIComponent(`[Message] ${topic} — from ${senderName}`);
+      const body = encodeURIComponent(
+        `### Message to Developer\n- **From:** ${senderName}\n- **Topic / App:** ${topic}\n\n---\n\n${message}`
+      );
+      const issueUrl = `https://github.com/${CONFIG.githubOwner}/${CONFIG.githubRepo}/issues/new?title=${title}&body=${body}`;
+      window.open(issueUrl, "_blank", "noopener,noreferrer");
     });
+
+    /* Mount general community GitHub Discussions */
+    mountGiscus(document.getElementById("giscus-container"), "ExamAi Community General");
 
     loadAppsFromFolder();
   </script>
