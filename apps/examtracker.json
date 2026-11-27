@@ -1,26 +1,33 @@
 {
   "name": "Exam Tracker",
   "logo": "logos/exam_tracker.png",
+  "downloadUrl": "https://github.com/your-username/exam-tracker/releases/latest",
+  "downloadLabel": "Download APK",
+  "screenshots": [
+    "screenshots/exam-tracker-1.png",
+    "screenshots/exam-tracker-2.png",
+    "screenshots/exam-tracker-3.png"
+  ],
   "tagline": "Offline-first 13-stage government job application, credential vault, countdown & admit card tracker for Android",
-  "description": "Exam Tracker is a native Android application (Kotlin & Jetpack Compose, Material 3) built to manage the complete lifecycle of government and competitive job applications across 13 progressive stages—from circular tracking and 72-hour Teletalk fee deadlines to admit card monitoring, preliminary, written, viva, and final selection. It combines an offline-first local SQLite database and document vault with a smart SMS/notification parser, one-click programmatic admit card downloader & portal auto-fill browser, 4 adaptive home screen widgets, color-graded PDF statement export, and Bring-Your-Own-Key (BYOK) multi-provider AI document extraction (Google Gemini, OpenAI, OpenRouter, Groq, DeepSeek, Ollama, or custom OpenAI-compatible endpoints) in both Bangla and English.",
+  "description": "Exam Tracker is a native Android application (Kotlin & Jetpack Compose, Material 3) designed for job seekers managing multiple government and competitive exam applications simultaneously. It tracks every application across a structured 13-stage progressive lifecycle—from circular discovery and 72-hour Teletalk fee deadlines to admit card availability, preliminary, written, viva, and final selection—while keeping active, passed, failed, and unapplied records cleanly organized. Built with an offline-first local SQLite database and private document vault, the app features a zero-key SMS/notification parser for Teletalk credentials, a programmatic one-click Admit Card Downloader (Jsoup/OkHttp) with a Smart Auto-Fill Portal Browser, automatic mirroring of saved admit PDFs to public Downloads/ExamTracker, color-graded PDF statement printing, 4 adaptive Home Screen Widgets (2x2, 4x1, 4x2, 4x3), and Bring-Your-Own-Key (BYOK) AI auto-fill supporting Google Gemini, OpenAI, OpenRouter, Groq, DeepSeek, Ollama (Local), and Custom OpenAI-compatible endpoints in both Bangla and English.",
   "benefits": [
-    "13-stage progressive job lifecycle (Circular, 72-hour Fee Pending alert, Applied, Admit Card, Prelims, Written, Viva, Selected, and categorized Archive for Passed/Failed/Not Applied)",
-    "100% offline-first core tracking with local SQLite persistence, private document vault, and automatic copy of downloaded admit cards to public Downloads/ExamTracker",
-    "Zero-key offline SMS and Notification Listener parser that automatically extracts Teletalk User ID, PIN, Roll Number, and exam/admit schedules",
-    "Bring-Your-Own-Key (BYOK) AI auto-fill supporting Google Gemini, OpenAI, OpenRouter, Groq, DeepSeek, Ollama (Local), and Custom OpenAI-compatible endpoints to extract details from circular images/PDFs",
-    "Programmatic one-click Admit Card Downloader (Jsoup/OkHttp) plus built-in Smart Auto-Fill Portal Browser that fills credentials and captures admit PDFs automatically",
+    "13-stage progressive job lifecycle (Circular, 72-hour Fee Pending alert, Applied, Admit Card, Prelims, Written, Viva, Selected, plus categorized Archive for Passed, Failed, and Not Applied)",
+    "100% offline-first core workflow with local SQLite storage, private document vault for circulars/copies/admit cards/results, and automatic copy to public Downloads/ExamTracker",
+    "Zero-API-key offline SMS and Notification Listener parser that automatically extracts Teletalk User ID, PIN, Roll Number, and exam/admit schedules",
+    "Bring-Your-Own-Key (BYOK) AI extraction supporting Google Gemini, OpenAI, OpenRouter, Groq, DeepSeek, Ollama (Local), and Custom endpoints to scan circulars or PDFs and auto-fill forms",
+    "Programmatic one-click Admit Card Downloader (Jsoup/OkHttp) and built-in Smart Auto-Fill Portal Browser that fills saved credentials and captures admit PDFs",
     "Portable offline backups (.json and verifiable .pdf export/import with duplicate-conflict resolution), optional Google Drive folder sync, and printable color-graded PDF job statements",
-    "Bilingual Bangla & English interface with Day/Night theme, responsive layouts for small phones (360dp+) and tablets, ongoing countdown notifications, and 4 adaptive Home Screen Widgets (2x2, 4x1, 4x2, 4x3)"
+    "Lightweight responsive UI optimized for small screens (360dp+) and tablets with Bangla/English localization, Day/Night themes, ongoing countdown notifications, and 4 adaptive Home Screen Widgets"
   ],
   "limitations": [
-    "Cloud AI circular scanning, OCR extraction, and automated AI exam notice search require the user's own API key (Gemini, OpenAI, OpenRouter, Groq, DeepSeek, or a local Ollama server); manual entry, regex SMS parsing, and local backups work without any API key",
+    "Cloud AI circular scanning, OCR extraction, and automated AI notice search require the user's own API key (Gemini, OpenAI, OpenRouter, Groq, DeepSeek, or a local Ollama server); manual tracking, SMS parsing, and local backups work without any API key",
     "Optional Google Drive cloud backup (drive.file scope) requires Google Cloud OAuth verification or Test User approval while in Testing mode, whereas offline .json and .pdf backups work without signing in",
-    "Automated admit card scraping and WebView auto-fill are tailored for standard government/Teletalk HTML portals and may require manual completion in an external browser if a portal enforces CAPTCHA or non-standard layouts",
-    "Android-only native application (minSdk 24, targetSdk 35); no iOS or web client",
-    "Live notification auto-parsing requires the user to manually grant Android Notification Listener access"
+    "Automated admit card scraping and WebView auto-fill target standard government/Teletalk HTML portals and may require manual completion in an external browser if a portal uses CAPTCHA or non-standard markup",
+    "Native Android-only application (minSdk 24, targetSdk 35); no iOS or desktop web version",
+    "Live notification auto-parsing requires the user to manually grant Android Notification Listener permission"
   ],
   "repoUrl": "https://github.com/your-username/exam-tracker",
   "derivatives": [],
-  "legalObligations": "Released under an open-source license. Anyone modifying, building, or redistributing this software must retain the original copyright, license notices, and attribution, and comply with third-party library licenses (AndroidX, Jetpack Compose, OkHttp, Jsoup, Coil, and Google Play Services).",
-  "privacyPolicy": "Exam Tracker follows a local-first privacy model: no analytics, ads, tracking SDKs, or telemetry are included, and no personal data is collected or sold by the developer. All job records, User IDs, passwords, roll numbers, attached PDFs/images, and user-entered AI API keys remain stored locally on the user's device. Optional AI extraction sends only the document or notice text selected by the user directly to the AI provider they configure, and optional Google Drive backup writes solely to app-created files inside the user's own Google Drive using the scoped drive.file permission."
+  "legalObligations": "Released under an open-source license. Anyone modifying, building, or redistributing this software must retain original copyright, attribution, and license notices, and comply with third-party library licenses (AndroidX, Jetpack Compose, OkHttp, Jsoup, Coil, and Google Play Services).",
+  "privacyPolicy": "Exam Tracker follows a local-first privacy architecture: no ads, analytics, tracking SDKs, or central data collection servers are used, and no personal data is sold or harvested. All job applications, User IDs, passwords, roll numbers, attached documents, and user-configured AI API keys are stored locally on the user's device. Optional AI scanning transmits only the document or notice text chosen by the user directly to their configured AI provider, and optional Google Drive backup stores files exclusively inside the user's own Google Drive under the scoped drive.file permission."
 }
